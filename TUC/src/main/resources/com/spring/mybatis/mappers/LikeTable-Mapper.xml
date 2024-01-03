@@ -11,15 +11,15 @@
   		select * from liketable
   		where username=#{username} and boardid=#{boardid}
   	</select>
-  	<select id="selectLikeCount">
+  	<select id="selectLikeCount" resultType="int">
   		select count(likenum) from liketable
   	</select>
-  	<insert id="insertLike">
+  	<insert id="insertLike" parameterType="like">
   		insert into
   		liketable(likenum, likename, username, boardid)
   		values(#{likenum}, #{likename}, #{username}, #{boardid})
   	</insert>
-  	<delete id="deleteLike">
+  	<delete id="deleteLike" parameterType="like">
   		delete from liketable
   		where username=#{username} and boardid=#{boardid}
   	</delete>
