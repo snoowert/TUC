@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  	<typeAliases>
+  		<typeAlias type="java.lang.String" alias="str"/>
+  		<typeAlias type="java.lang.Integer" alias="int"/>
+  		<typeAlias type="com.spring.dto.UserTableVO" alias="user"/>
+  		<typeAlias type="com.spring.dto.PostRecipeVO" alias="recipe"/>
+  		<typeAlias type="com.spring.dto.LikeTableVO" alias="like"/>
+  		<typeAlias type="com.spring.dto.CommentTableVO" alias="comment"/>
+  		<typeAlias type="com.spring.dto.BoardTableVO" alias="board"/>
+  	</typeAliases>
+	<mappers>
+	</mappers>
+  </configuration>

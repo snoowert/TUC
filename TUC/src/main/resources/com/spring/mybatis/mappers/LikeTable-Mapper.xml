@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="LikeTable-Mapper">
+  	<select id="selectLikeList" resultType="like">
+  		select * from liketable
+  	</select>
+  	<select id="selectLikeById" resultType="like" parameterType="str">
+  		select * from liketable
+  		where username=#{username} and boardid=#{boardid}
+  	</select>
+  	<select id="selectLikeCount">
+  		select count(likenum) from liketable
+  	</select>
+  	<insert id="insertLike">
+  		insert into
+  		liketable(likenum, likename, username, boardid)
+  		values(#{likenum}, #{likename}, #{username}, #{boardid})
+  	</insert>
+  	<delete id="deleteLike">
+  		delete from liketable
+  		where username=#{username} and boardid=#{boardid}
+  	</delete>
+  </mapper>
