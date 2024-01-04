@@ -23,7 +23,7 @@
   		commenttext=#{commenttext}, isdelete=#{isdelete}
   		where commentid=#{commentid} and boardid=#{boardid}
   	</update>
-  	<delete id="deleteComment" parameterType="str">
+  	<delete id="deleteComment" parameterType="comment">
   		delete from commenttable
   		where commentid=#{commentid} and boardid=#{boardid}
   	</delete>

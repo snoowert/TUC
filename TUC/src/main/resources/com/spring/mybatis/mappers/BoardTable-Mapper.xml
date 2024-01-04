@@ -4,25 +4,25 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="BoardTable-Mapper">
-  	<select id="selectBoardTable">
+  	<select id="selectBoardTable" resultType="boardtable">
   		select * from boardtable
   	</select>
-  	<select id="selectBoardTableById">
+  	<select id="selectBoardTableById" parameterType="str" resultType="boardtable">
   		select * from boardtable
   		where tablenum=#{tablenum}
   	</select>
-  	<insert id="insertBoardTable">
+  	<insert id="insertBoardTable" parameterType="boardtable">
   		insert into
   		boardtable(tablenum, category, isuse)
   		values(#{tablenum}, #{category}, #{isuse})
   	</insert>
-  	<update id="updateBoardTable">
+  	<update id="updateBoardTable" parameterType="boardtable">
   		update boardtable
   		set
   		category = #{category}, isuse=#{isuse}
   		where tablenum=#{tablenum}
   	</update>
-  	<delete id="deleteBoardTable">
+  	<delete id="deleteBoardTable" parameterType="str">
   		delete boardtable
   		where category=#{category}
   	</delete>
