@@ -8,7 +8,7 @@
   	<select id="selectCommentList" resultType="comment">
   		select * from commenttable
   	</select>
-  	<select id="selectCommentById" resultType="comment">
+  	<select id="selectCommentById" resultType="comment" parameterType="str">
   		select * from commenttable
   		where username=#{username}
   	</select>
@@ -23,7 +23,7 @@
   		commenttext=#{commenttext}, isdelete=#{isdelete}
   		where commentid=#{commentid} and boardid=#{boardid}
   	</update>
-  	<delete id="deleteComment" parameterType="str">
+  	<delete id="deleteComment" parameterType="comment">
   		delete from commenttable
   		where commentid=#{commentid} and boardid=#{boardid}
   	</delete>

@@ -11,6 +11,10 @@
   		select * from boardtable
   		where tablenum=#{tablenum}
   	</select>
+  	<select id="selectBoardTableByCategory" parameterType="boardtable" resultType="boardtable">
+  		select * from boardtable
+  		where tablenum=#{tablenum} and category=#{category}
+  	</select>
   	<insert id="insertBoardTable" parameterType="boardtable">
   		insert into
   		boardtable(tablenum, category, isuse)

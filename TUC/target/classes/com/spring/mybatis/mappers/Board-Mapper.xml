@@ -2,13 +2,35 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="Board-Mapper">
-  	<select id="selectBoardList">
-  		select * from board
-  	</select>
-  	<select id="selectBoardById">
-  		select * from board
-  		where 
-  	</select>
-  </mapper>
+
+<mapper namespace="Board-Mapper">
+	<select id="selectBoardList" resultType="board">
+		select * from board
+	</select>
+	<select id="selectBoardById" parameterType="board"
+		resultType="board">
+		select * from board
+		where boardid=#{boardid}
+	</select>
+	<insert id="insertBoard" parameterType="board">
+		insert into
+		board(boardid, thumnail, title, content, boarddate, updatedate, likecount,
+		viewcount,
+		isnotice, isdelete, tableid, username )
+		values(#{boardid}, #{thumnail}, #{title}, #{content}, #{boarddate}, #{updatedate},
+		#{likecount}, #{viewcount}, #{isnotice}, #{isdelete}, #{tableid},
+		#{username})
+	</insert>
+	<update id="updateBoard" parameterType="board">
+		update board
+		set
+		thumnail=#{thumnail}, title=#{title}, content=#{content}, updatedate=#{updatedate},
+		likecount=#{likecount}, viewcount=#{viewcount}, isnotice=#{isnotice},
+		isdelete=#{isdelete}
+		where boardid = #{boardid} and tableid = #{tableid}
+	</update>
+	<delete id="deleteBoard" parameterType="board">
+		delete from board
+		where boardid = #{boardid}
+	</delete>
+</mapper>

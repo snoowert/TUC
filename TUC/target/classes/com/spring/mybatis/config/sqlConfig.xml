@@ -8,10 +8,10 @@
   		<typeAlias type="java.lang.String" alias="str"/>
   		<typeAlias type="java.lang.Integer" alias="int"/>
   		<typeAlias type="com.spring.dto.UserTableVO" alias="user"/>
-  		<typeAlias type="com.spring.dto.PostRecipeVO" alias="recipe"/>
+  		<typeAlias type="com.spring.dto.BoardVO" alias="board"/>
   		<typeAlias type="com.spring.dto.LikeTableVO" alias="like"/>
   		<typeAlias type="com.spring.dto.CommentTableVO" alias="comment"/>
-  		<typeAlias type="com.spring.dto.BoardTableVO" alias="board"/>
+  		<typeAlias type="com.spring.dto.BoardTableVO" alias="boardtable"/>
   	</typeAliases>
 	<mappers>
 	</mappers>

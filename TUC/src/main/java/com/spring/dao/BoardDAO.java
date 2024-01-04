@@ -1,5 +1,9 @@
 package com.spring.dao;
 
+import java.util.List;
+
+import com.spring.dto.BoardVO;
+
 public interface BoardDAO {
 	List<BoardVO> selectBoardList() throws Exception;
 

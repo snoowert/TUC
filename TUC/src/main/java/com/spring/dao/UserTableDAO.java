@@ -1,5 +1,9 @@
 package com.spring.dao;
 
+import java.util.List;
+
+import com.spring.dto.UserTableVO;
+
 public interface UserTableDAO {
 	List<UserTableVO> selectUserList() throws Exception;
 

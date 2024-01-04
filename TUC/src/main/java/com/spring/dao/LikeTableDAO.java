@@ -9,7 +9,7 @@ public interface LikeTableDAO {
 
 	LikeTableVO selectLikeById(LikeTableVO like) throws Exception;
 
-	int selectLikeCount(int id) throws Exception;
+	int selectLikeCount(String boardId) throws Exception;
 
 	void insertLike(LikeTableVO like) throws Exception;
 
