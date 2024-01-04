@@ -8,7 +8,7 @@
   	<select id="selectCommentList" resultType="comment">
   		select * from commenttable
   	</select>
-  	<select id="selectCommentById" resultType="comment">
+  	<select id="selectCommentById" resultType="comment" parameterType="str">
   		select * from commenttable
   		where username=#{username}
   	</select>
