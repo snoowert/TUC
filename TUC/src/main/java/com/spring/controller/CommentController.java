@@ -21,7 +21,7 @@ public class CommentController {
 	public void list(Model model) throws Exception {
 		List<CommentTableVO> commentList = commentService.list();
 
-		model.addAttribute("commentList", commentList);
+		model.addAttribute("commentList", commentList); 
 	}
 
 }
