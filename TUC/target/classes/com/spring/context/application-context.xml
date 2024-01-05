@@ -8,4 +8,5 @@
 	<bean id="CommentDAO" class="com.spring.dao.CommentTableDAOImpl"
 		p:sqlSession-ref="sqlSession"></bean>
 	<!-- service -->
+	<bean id="CommentService" class="com.spring.service.CommentTableServiceImpl" p:memberDAO-ref="CommentDAO"></bean>
 </beans>

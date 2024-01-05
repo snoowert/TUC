@@ -12,6 +12,10 @@
   		select * from commenttable
   		where username=#{username}
   	</select>
+  	<select id="selectCommentByBoard" resultType="comment" parameterType="str">
+  		select * from commenttable
+  		where boardid=#{boardid}
+  	</select>
   	<insert id="insertComment" parameterType="comment">
   		insert into
   		commenttable(commentid, boardid, commenttext, commentdate, username, isdelete)
