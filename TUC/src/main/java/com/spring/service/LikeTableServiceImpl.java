@@ -26,7 +26,7 @@ public class LikeTableServiceImpl implements LikeTableService{
 	}
 
 	@Override
-	public List<LikeTableVO> listByBoard(String boardId) throws SQLException {
+	public int listByBoard(String boardId) throws SQLException {
 		// TODO Auto-generated method stub
 		return likeDAO.selectLikeListByBoard(boardId);
 	}

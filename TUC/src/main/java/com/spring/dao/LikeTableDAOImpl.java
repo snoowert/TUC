@@ -28,9 +28,9 @@ public class LikeTableDAOImpl implements LikeTableDAO {
 	}
 
 	@Override
-	public List<LikeTableVO> selectLikeListByBoard(String boardId) throws SQLException {
+	public int selectLikeListByBoard(String boardId) throws SQLException {
 		// TODO Auto-generated method stub
-		return session.selectList("LikeTable-Mapper.selectLikeListByBoard", boardId);
+		return session.selectOne("LikeTable-Mapper.selectLikeListByBoard", boardId);
 	}
 
 	@Override

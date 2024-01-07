@@ -12,7 +12,7 @@
   		where username=#{username} and boardid=#{boardid}
   	</select>
   	<select id="selectLikeListByBoard" resultType="like" parameterType="str">
-  		select * from liketable
+  		select count(*) from liketable
   		where boardid=#{boardid}
   	</select>
   	<insert id="insertLike" parameterType="like">

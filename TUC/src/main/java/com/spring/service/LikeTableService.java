@@ -10,7 +10,7 @@ public interface LikeTableService {
 	
 	LikeTableVO select(LikeTableVO like) throws SQLException;
 	
-	List<LikeTableVO> listByBoard(String boardId) throws SQLException;
+	int listByBoard(String boardId) throws SQLException;
 	
 	void insert(LikeTableVO like) throws SQLException;
 	

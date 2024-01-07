@@ -10,7 +10,7 @@ public interface LikeTableDAO {
 
 	LikeTableVO selectLikeById(LikeTableVO like) throws SQLException;
 
-	List<LikeTableVO> selectLikeListByBoard(String boardId) throws SQLException;
+	int selectLikeListByBoard(String boardId) throws SQLException;
 
 	void insertLike(LikeTableVO like) throws SQLException;
 
