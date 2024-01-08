@@ -15,12 +15,13 @@ public class PageMaker {
 
 	private int displayPageNum = 10; // 한 페이지에 보여줄 페이지 번호 개수
 
-	public String getSeartchType() {
+
+	public String getSearchType() {
 		return searchType;
 	}
 
-	public void setSeartchType(String seartchType) {
-		this.searchType = seartchType;
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
 	}
 
 	public String getKeyword() {

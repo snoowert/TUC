@@ -8,7 +8,7 @@
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@192.168.0.133:1521:XE" p:username="TUC"
+		p:url="jdbc:oracle:thin:@localhost:1521:XE" p:username="TUC"
 		p:password="tuc"></bean>
 
 	<bean id="sqlSessionFactory"

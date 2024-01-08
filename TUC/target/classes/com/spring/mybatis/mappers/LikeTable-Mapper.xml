@@ -11,8 +11,8 @@
   		select * from liketable
   		where username=#{username} and boardid=#{boardid}
   	</select>
-  	<select id="selectLikeCount" resultType="int" parameterType="str">
-  		select count(likenum) from liketable
+  	<select id="selectLikeListByBoard" resultType="like" parameterType="str">
+  		select count(*) from liketable
   		where boardid=#{boardid}
   	</select>
   	<insert id="insertLike" parameterType="like">

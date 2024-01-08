@@ -7,6 +7,22 @@
 	<!-- repo -->
 	<bean id="CommentDAO" class="com.spring.dao.CommentTableDAOImpl"
 		p:sqlSession-ref="sqlSession"></bean>
+	<bean id="LikeDAO" class="com.spring.dao.LikeTableDAOImpl"
+		p:sqlSession-ref="sqlSession"></bean>
+	<bean id="BoardTableDAO" class="com.spring.dao.BoardTableDAOImpl"
+		p:sqlSession-ref="sqlSession"></bean>
+	<bean id="BoardDAO" class="com.spring.dao.BoardDAOImpl"
+		p:sqlSession-ref="sqlSession"></bean>
+	<bean id="UserTableDAO" class="com.spring.dao.UserTableDAOImpl"
+		p:sqlSession-ref="sqlSession"></bean>
 	<!-- service -->
-	<bean id="CommentService" class="com.spring.service.CommentTableServiceImpl" p:memberDAO-ref="CommentDAO"></bean>
+	<bean id="CommentService"
+		class="com.spring.service.CommentTableServiceImpl"
+		p:memberDAO-ref="CommentDAO"></bean>
+	<bean id="LikeService"
+		class="com.spring.service.LikeTableServiceImpl"
+		p:likeTableDAO-ref="LikeDAO"></bean>
+	<bean id="BoardTableService" class="com.spring.service.BoardTableServiceImpl" p:boardTableDAO-ref="BoardTableDAO"></bean>
+	<bean id="BoardService" class="com.spring.service.BoardServiceImpl" p:boardDAO-ref="BoardDAO"></bean>
+	<bean id="UserTableService" class="com.spring.service.UserTableServiceImpl" p:userTableDAO-ref="UserTableDAO"></bean>
 </beans>
