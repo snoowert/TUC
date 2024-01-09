@@ -7,7 +7,7 @@
 	<select id="selectBoardList" resultType="board">
 		select * from board
 	</select>
-	<select id="selectBoardById" parameterType="board"
+	<select id="selectBoardById" parameterType="str"
 		resultType="board">
 		select * from board
 		where boardid=#{boardid}
@@ -16,10 +16,10 @@
 		insert into
 		board(boardid, thumnail, title, content, boarddate, updatedate, likecount,
 		viewcount,
-		isnotice, isdelete, tableid, username )
+		isnotice, isdelete, tableid, username, category, state, QAcontent )
 		values(#{boardid}, #{thumnail}, #{title}, #{content}, #{boarddate}, #{updatedate},
 		#{likecount}, #{viewcount}, #{isnotice}, #{isdelete}, #{tableid},
-		#{username})
+		#{username}, #{category}, #{state}, #{QAcontent})
 	</insert>
 	<update id="updateBoard" parameterType="board">
 		update board
@@ -29,7 +29,7 @@
 		isdelete=#{isdelete}
 		where boardid = #{boardid} and tableid = #{tableid}
 	</update>
-	<delete id="deleteBoard" parameterType="board">
+	<delete id="deleteBoard" parameterType="str">
 		delete from board
 		where boardid = #{boardid}
 	</delete>
