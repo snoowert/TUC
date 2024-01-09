@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class BoardVO {
 	private String boardid;
+	private String category;
 	private String thumnail;
 	private String title;
 	private String content;
@@ -15,6 +16,8 @@ public class BoardVO {
 	private char isdelete;
 	private String tableid;
 	private String username;
+	private String QAcontent;
+	private char state;
 	public String getBoardid() {
 		return boardid;
 	}
@@ -86,6 +89,24 @@ public class BoardVO {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getQAcontent() {
+		return QAcontent;
+	}
+	public void setQAcontent(String qAcontent) {
+		QAcontent = qAcontent;
+	}
+	public char getState() {
+		return state;
+	}
+	public void setState(char state) {
+		this.state = state;
 	}
 	
 }
