@@ -7,6 +7,7 @@
   <mapper namespace="CommentTable-Mapper">
   	<select id="selectCommentList" resultType="comment">
   		select * from commenttable
+  		order by commentdate desc
   	</select>
   	<select id="selectCommentById" resultType="comment" parameterType="str">
   		select * from commenttable
@@ -15,6 +16,7 @@
   	<select id="selectCommentByBoard" resultType="comment" parameterType="str">
   		select * from commenttable
   		where boardid=#{boardid}
+  		orderby commentdate desc
   	</select>
   	<insert id="insertComment" parameterType="comment">
   		insert into

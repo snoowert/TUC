@@ -83,24 +83,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     		  <div class="row">
 	             <div class="col-sm-12">	
 		    		<table class="table table-bordered">
-		    			<tr>
-		    				<th>사진</th>
-		                	<th>아이디</th>
-		                	<th>패스워드</th>
-		                	<th>이 름</th>
-		                	<th>이메일</th>
-		                	<th>전화번호</th>
-		                	<th>등록날짜</th> <!-- yyyy-MM-dd  -->
-		               	</tr>
+		    			
 		              	<c:forEach var="comment" items="${ commentList}">
 		              		<tr>
-			    				<th>${comment.username }</th>
-			                	<th>${comment.commentid }</th>
-			                	<th>${comment.commenttext }</th>
-			                	<th>${comment.isdelete }</th>
-			                	<th>pic</th>
-			                	<th>${comment.boardid }</th>
-			                	<th><fmt:formatDate value="${comment.commentdate }" pattern="yyyy.MM.dd"/></th> <!-- yyyy-MM-dd  -->
+			                	<th class="col-sm-8">${comment.commenttext }</th>
+			    				<th class="col-sm-2">${comment.username }</th>
+			                	<th class="col-sm-2"><fmt:formatDate value="${comment.commentdate }" pattern="yyyy.MM.dd"/></th> <!-- yyyy-MM-dd  -->
 		               		</tr>
 		              	</c:forEach>
 		            </table>
