@@ -27,55 +27,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Content Wrapper. Contains page content -->    
 
 	 <!-- Main content -->
-	<section class="content-header">
-	  	<div class="container-fluid">
-	  		<div class="row md-2">
-	  			<div class="col-sm-6">
-	  				<h1>댓글목록</h1>  				
-	  			</div>
-	  			<div class="col-sm-6">
-	  				<ol class="breadcrumb float-sm-right">
-			        <li class="breadcrumb-item">
-			        	<a href="list.do">
-				        	<i class="fa fa-dashboard"></i>회원관리
-				        </a>
-			        </li>
-			        <li class="breadcrumb-item active">
-			        	목록
-			        </li>		        
-	    	  </ol>
-	  			</div>
-	  		</div>
-	  	</div>
-	</section>
-	 
-	 
+	
    	<section class="content">
    		<div class="card">
    			<div class="card-header with-border">
    				<button type="button" class="btn btn-primary" onclick="" >회원등록</button>
    				<div id="keyword" class="card-tools" style="width:550px;">
    					 <div class="input-group row">
-   					 	<!-- search bar -->
-   					 	<!-- sort num -->
-					  	<select class="form-control col-md-3" name="perPageNum" id="perPageNum" onchange="">					  		  		
-					  	</select>
-					  	
-					  	
-					  	<!-- search bar -->
-					 	<select class="form-control col-md-3" name="searchType" id="searchType">
-					 					 									
-						</select>
-						<!-- keyword -->
-   					 	<input  class="form-control" type="text" name="keyword" 
-   					 			placeholder="검색어를 입력하세요." value=""/>
-						<span class="input-group-append">
-							<button class="btn btn-primary" type="button" 
-									id="searchBtn" data-card-widget="search" >
-								<i class="fa fa-fw fa-search"></i>
-							</button>
-						</span>
-					<!-- end : search bar -->		
    					 </div>
    				</div>   			
    			</div>

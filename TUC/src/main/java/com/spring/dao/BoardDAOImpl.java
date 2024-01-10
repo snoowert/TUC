@@ -17,13 +17,19 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> selectBoardList() throws SQLException {
 		// TODO Auto-generated method stub
-		return session.selectList("Board=Mapper.selectBoardList");
+		return session.selectList("Board-Mapper.selectBoardList");
 	}
-
+	
+	@Override
+	public List<BoardVO> selectBoardByCategory(String Category) throws SQLException {
+		// TODO Auto-generated method stub
+		return session.selectList("Board-Mapper.selectBoardByCategory",Category);
+	}
+	
 	@Override
 	public BoardVO selectBoardById(BoardVO board) throws SQLException {
 		// TODO Auto-generated method stub
-		return session.selectOne("Board=Mapper.selectBoardById");
+		return session.selectOne("Board-Mapper.selectBoardById");
 	}
 
 	@Override
@@ -43,5 +49,7 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		session.delete("Board-Mapper.deleteBoard", board);
 	}
+
+	
 
 }

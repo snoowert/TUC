@@ -1,6 +1,7 @@
 package com.spring.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class BoardVO {
 	private String boardid;
@@ -12,12 +13,14 @@ public class BoardVO {
 	private Date updatedate;
 	private int likecount;
 	private int viewcount;
-	private char isnotice;
 	private char isdelete;
 	private String tableid;
 	private String username;
 	private String QAcontent;
 	private char state;
+	
+	List<CommentTableVO> commentList;
+	
 	public String getBoardid() {
 		return boardid;
 	}
@@ -66,12 +69,6 @@ public class BoardVO {
 	public void setViewcount(int viewcount) {
 		this.viewcount = viewcount;
 	}
-	public char getIsnotice() {
-		return isnotice;
-	}
-	public void setIsnotice(char isnotice) {
-		this.isnotice = isnotice;
-	}
 	public char getIsdelete() {
 		return isdelete;
 	}
@@ -107,6 +104,12 @@ public class BoardVO {
 	}
 	public void setState(char state) {
 		this.state = state;
+	}
+	public List<CommentTableVO> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<CommentTableVO> commentList) {
+		this.commentList = commentList;
 	}
 	
 }

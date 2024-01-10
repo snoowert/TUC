@@ -20,6 +20,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public List<BoardVO> listByCategory(String Category) throws SQLException {
+		// TODO Auto-generated method stub
+		return boardDAO.selectBoardByCategory(Category);
+	}
+	
+	@Override
 	public BoardVO select(BoardVO board) throws SQLException {
 		// TODO Auto-generated method stub
 		return boardDAO.selectBoardById(board);
@@ -42,5 +48,7 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		boardDAO.deleteBoard(board);
 	}
+
+	
 
 }

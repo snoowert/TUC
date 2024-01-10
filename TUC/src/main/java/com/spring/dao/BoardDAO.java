@@ -8,6 +8,8 @@ import com.spring.dto.BoardVO;
 public interface BoardDAO {
 	List<BoardVO> selectBoardList() throws SQLException;
 
+	List<BoardVO> selectBoardByCategory(String Category) throws SQLException;
+	
 	BoardVO selectBoardById(BoardVO board) throws SQLException;
 
 	void insertBoard(BoardVO board) throws SQLException;

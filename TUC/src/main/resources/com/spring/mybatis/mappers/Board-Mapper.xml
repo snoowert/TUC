@@ -4,33 +4,73 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Board-Mapper">
-	<select id="selectBoardList" resultType="board">
+	<!-- 검색(제목, 내용, 작성유저) -->
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			and title like '%'||#{keyword}||'%'
+			and category like
+			'%'||#{category}||'% </if>
+		<if test="searchType == 'c'.toString()">
+			and content like '%'||#{keyword}||'%'
+			and category like
+			'%'||#{category}||'% </if>
+		<if test="searchType == 'u'.toString()">
+			and username like '%'||#{keyword}||'%'
+			and category like
+			'%'||#{category}||'% </if>
+	</sql>
+	<!-- 전체 리스트 and 검색 -->
+	<select id="selectRecipeList" resultType="board"
+		parameterType="pageMaker">
 		select * from board
+		where boardId is not null
+		<include refid="search"></include>
 	</select>
-	<select id="selectBoardById" parameterType="str"
+	<!-- 게시글 총 수 계산 -->
+	<select id="selectRecipeListCount" resultType="int"
+		parameterType="pageMaker">
+		select count(*)
+		from board
+		where boardId is not null
+		<include refid="search"></include>
+	</select>
+	<!-- 보드 아이디를 위한 시퀀스 호출 -->
+	<select id="selectRecipeSeqNext" resultType="int">
+		select
+		RECIPE_SEQ.nextval as boardId from dual
+	</select>
+	<!-- 게시글 상세 조회 -->
+	<select id="selectRecipeById" parameterType="int"
 		resultType="board">
 		select * from board
 		where boardid=#{boardid}
 	</select>
-	<insert id="insertBoard" parameterType="board">
+	<!-- 게시글 등록 -->
+	<insert id="insertRecipe" parameterType="board">
 		insert into
-		board(boardid, thumnail, title, content, boarddate, updatedate, likecount,
-		viewcount,
-		isnotice, isdelete, tableid, username, category, state, QAcontent )
-		values(#{boardid}, #{thumnail}, #{title}, #{content}, #{boarddate}, #{updatedate},
-		#{likecount}, #{viewcount}, #{isnotice}, #{isdelete}, #{tableid},
-		#{username}, #{category}, #{state}, #{QAcontent})
+		board(boardid, thumnail, title, content, tableid, username, category)
+		values(#{boardid}, #{thumnail}, #{title}, #{content}, #{tableid},
+		#{username}, #{category})
 	</insert>
-	<update id="updateBoard" parameterType="board">
+	<!-- 게시글 수정 -->
+	<update id="updateRecipe" parameterType="board">
 		update board
 		set
-		thumnail=#{thumnail}, title=#{title}, content=#{content}, updatedate=#{updatedate},
-		likecount=#{likecount}, viewcount=#{viewcount}, isnotice=#{isnotice},
-		isdelete=#{isdelete}
-		where boardid = #{boardid} and tableid = #{tableid}
-	</update>
-	<delete id="deleteBoard" parameterType="str">
-		delete from board
+		thumnail=#{thumnail}, title=#{title}, content=#{content},
+		updatedate=sysdate
 		where boardid = #{boardid}
+	</update>
+	<!--조회수 상승-->
+	<update id="increaseViewCount" parameterType="int">
+		update board
+		set
+		viewCount = viewCount +1
+		where boardid = #{boardid}
+	</update>
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from board
+		where
+		boardid = #{boardid}
 	</delete>
 </mapper>
