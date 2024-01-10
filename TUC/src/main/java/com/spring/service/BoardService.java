@@ -6,15 +6,4 @@ import java.util.List;
 import com.spring.dto.BoardVO;
 
 public interface BoardService {
-	List<BoardVO> list() throws SQLException;
-	
-	List<BoardVO> listByCategory(String Category) throws SQLException;
-	
-	BoardVO select(BoardVO board) throws SQLException;
-	
-	void insert(BoardVO board) throws SQLException;
-	
-	void update(BoardVO board) throws SQLException;
-	
-	void delete(BoardVO board) throws SQLException;
 }

@@ -10,7 +10,6 @@ public class CommentTableVO {
 	private String commentid;
 	private String boardid;
 	private String commenttext;
-	@DateTimeFormat(pattern="yyyy.MM.dd")
 	private Date commentdate;
 	private String username;
 	private char isdelete;

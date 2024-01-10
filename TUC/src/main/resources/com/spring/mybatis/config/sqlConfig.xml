@@ -11,7 +11,6 @@
   		<typeAlias type="com.spring.dto.BoardVO" alias="board"/>
   		<typeAlias type="com.spring.dto.LikeTableVO" alias="like"/>
   		<typeAlias type="com.spring.dto.CommentTableVO" alias="comment"/>
-  		<typeAlias type="com.spring.dto.BoardTableVO" alias="boardtable"/>
   	</typeAliases>
 	<mappers>
 	</mappers>

@@ -5,7 +5,7 @@ public class PageMaker {
 	private int perPageNum = 10; // 리스트 개수
 	private String searchType = ""; // 검색유형
 	private String keyword = ""; // 검색어
-
+	private String category = "";
 	private int totalCount; // 전체 행의 개수
 	private int startPage = 1; // 시작 페이지 번호
 	private int endPage = 1; // 마지막 페이지 번호
@@ -14,7 +14,6 @@ public class PageMaker {
 	private boolean next; // 다음페이지 버튼 유무
 
 	private int displayPageNum = 10; // 한 페이지에 보여줄 페이지 번호 개수
-
 
 	public String getSearchType() {
 		return searchType;
@@ -30,6 +29,14 @@ public class PageMaker {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getPage() {

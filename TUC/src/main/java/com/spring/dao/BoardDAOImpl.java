@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.spring.command.PageMaker;
 import com.spring.dto.BoardVO;
 
 public class BoardDAOImpl implements BoardDAO {
@@ -15,41 +16,63 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> selectBoardList() throws SQLException {
+	public List<BoardVO> selectRecipeList(PageMaker pagemaker) throws SQLException {
 		// TODO Auto-generated method stub
-		return session.selectList("Board-Mapper.selectBoardList");
-	}
-	
-	@Override
-	public List<BoardVO> selectBoardByCategory(String Category) throws SQLException {
-		// TODO Auto-generated method stub
-		return session.selectList("Board-Mapper.selectBoardByCategory",Category);
-	}
-	
-	@Override
-	public BoardVO selectBoardById(BoardVO board) throws SQLException {
-		// TODO Auto-generated method stub
-		return session.selectOne("Board-Mapper.selectBoardById");
+		return session.selectList("Board-Mapper.selectRecipeList", pagemaker);
 	}
 
 	@Override
-	public void insertBoard(BoardVO board) throws SQLException {
+	public int selectRecipeListCount() throws SQLException {
 		// TODO Auto-generated method stub
-		session.insert("Board-Mapper.insertBoard");
+		return session.selectOne("Board-Mapper.selectRecipeListCount");
 	}
 
 	@Override
-	public void updateBoard(BoardVO board) throws SQLException {
+	public int selectRecipeSeqNext() throws SQLException {
 		// TODO Auto-generated method stub
-		session.update("Board-Mapper.updateBoard", board);
+		return session.selectOne("Board-Mapper.selectRecipeSeqNext");
 	}
 
 	@Override
-	public void deleteBoard(BoardVO board) throws SQLException {
+	public BoardVO selectRecipeById(int boardid) throws SQLException {
 		// TODO Auto-generated method stub
-		session.delete("Board-Mapper.deleteBoard", board);
+		return session.selectOne("Board-Mapper.selectRecipeById", boardid);
 	}
 
-	
+	@Override
+	public void insertRecipe(BoardVO board) throws SQLException {
+		// TODO Auto-generated method stub
+		session.insert("Board-Mapper.insertRecipe", board);
+	}
+
+	@Override
+	public void updateRecipe(BoardVO board) throws SQLException {
+		// TODO Auto-generated method stub
+		session.update("Board-Mapper.updateRecipe", board);
+	}
+
+	@Override
+	public void increaseViewCount(int boardid) throws SQLException {
+		// TODO Auto-generated method stub
+		session.update("Board-Mapper.increaseViewCount", boardid);
+	}
+
+	@Override
+	public void tempDeleteRecipe(int boardid) throws SQLException {
+		// TODO Auto-generated method stub
+		session.update("Board-Mapper.tempDeleteRecipe", boardid);
+	}
+
+	@Override
+	public void rewindRecipe(int boardid) throws SQLException {
+		// TODO Auto-generated method stub
+		session.update("Board-Mapper.rewindRecipe", boardid);
+	}
+
+	@Override
+	public void deleteRecipe(int boardid) throws SQLException {
+		// TODO Auto-generated method stub
+		session.delete("Board-Mapper.deleteRecipe", boardid);
+	}
 
 }
