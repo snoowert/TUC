@@ -8,6 +8,8 @@ public class UserTableVO {
 	private String phone;
 	private String membership;
 	private char isuser;
+	
+	
 	public String getUsername() {
 		return username;
 	}

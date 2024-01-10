@@ -7,7 +7,8 @@
 	<select id="selectUserList" resultType="user">
 		select * from usertable
 	</select>
-	<select id="selectUserById" parameterType="str" resultType="user">
+	<select id="selectUserById" parameterType="str"
+		resultType="user">
 		select * from
 		usertable
 		where username=#{username}
@@ -15,19 +16,29 @@
 	<insert id="insertUser" parameterType="user">
 		insert into
 		usertable(username, password, name, email,
-		phone, membership ,isuser)
+		phone, membership)
 		values(#{username}, #{password}, #{name}, #{email},
 		#{phone},
-		#{membership},
-		#{isuser})
+		#{membership})
 	</insert>
 	<update id="updateUser" parameterType="user">
 		update usertable
 		set
 		password=#{password}, name=#{name}, email=#{email}, phone=#{phone},
-		membership = #{membership},
-		isuser=#{isuser}
+		membership = #{membership}
 		where username=#{username}
+	</update>
+	<update id="temporaryUser" parameterType="str">
+	update usertable
+	set
+	isuser ='N'
+	where username=#{username}
+	</update>
+	<update id="rewindUser" parameterType="str">
+	update usertable
+	set
+	isuser ='Y'
+	where username=#{username}
 	</update>
 	<delete id="deleteUser" parameterType="str">
 		delete from UserTable
