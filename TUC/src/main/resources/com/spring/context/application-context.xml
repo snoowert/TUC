@@ -12,9 +12,6 @@
 	<bean id="UserTableDAO" class="com.spring.dao.UserTableDAOImpl"
 		p:sqlSession-ref="sqlSession"></bean>
 	<!-- service -->
-	<bean id="CommentService"
-		class="com.spring.service.CommentTableServiceImpl"
-		p:memberDAO-ref="CommentDAO"></bean>
-	<bean id="BoardService" class="com.spring.service.BoardServiceImpl" p:boardDAO-ref="BoardDAO"></bean>
+	<bean id="BoardService" class="com.spring.service.BoardServiceImpl" p:boardDAO-ref="BoardDAO" p:commentTableDAO-ref="CommentDAO"></bean>
 	<bean id="UserTableService" class="com.spring.service.UserTableServiceImpl" p:userTableDAO-ref="UserTableDAO"></bean>
 </beans>

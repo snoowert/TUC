@@ -20,15 +20,13 @@
 			'%'||#{category}||'% </if>
 	</sql>
 	<!-- 전체 리스트 and 검색 -->
-	<select id="selectRecipeList" resultType="board"
-		parameterType="pageMaker">
+	<select id="selectRecipeList" resultType="board">
 		select * from board
 		where boardId is not null
 		<include refid="search"></include>
 	</select>
 	<!-- 게시글 총 수 계산 -->
-	<select id="selectRecipeListCount" resultType="int"
-		parameterType="pageMaker">
+	<select id="selectRecipeListCount" resultType="int">
 		select count(*)
 		from board
 		where boardId is not null
@@ -60,15 +58,29 @@
 		updatedate=sysdate
 		where boardid = #{boardid}
 	</update>
-	<!--조회수 상승-->
+	<!--조회수 상승 -->
 	<update id="increaseViewCount" parameterType="int">
 		update board
 		set
 		viewCount = viewCount +1
 		where boardid = #{boardid}
 	</update>
+	<!-- 게시글 임시 삭제 -->
+	<update id="tempDeleteRecipe" parameterType="int">
+		update board
+		set
+		isdelete = 'Y'
+		where boardid = #{boardid}
+	</update>
+	<!-- 게시글 복구 -->
+	<update id="rewindRecipe" parameterType="int">
+		update board
+		set
+		isdelete = 'N'
+		where boardid = #{boardid}
+	</update>
 	<!-- 게시글 삭제 -->
-	<delete id="deleteBoard" parameterType="int">
+	<delete id="deleteRecipe" parameterType="int">
 		delete from board
 		where
 		boardid = #{boardid}

@@ -14,17 +14,17 @@ public class CommentTableDAOImpl implements CommentTableDAO {
 	public void setSqlSession(SqlSession session) {
 		this.session = session;
 	}
-	
+
 	@Override
-	public List<CommentTableVO> selectCommentList() throws SQLException {
+	public CommentTableVO selectCommentById(String commentid) throws SQLException {
 		// TODO Auto-generated method stub
-		return session.selectList("CommentTable-Mapper.selectCommentList");
+		return session.selectOne("CommentTable-Mapper.selectCommentById", commentid);
 	}
 
 	@Override
-	public List<CommentTableVO> selectCommentById(String username) throws SQLException {
+	public List<CommentTableVO> selectCommentByBoard(int boardid) throws SQLException {
 		// TODO Auto-generated method stub
-		return session.selectList("CommentTable-Mapper.selectCommentById",username);
+		return session.selectList("CommentTable-Mapper.selectCommentByBoard", boardid);
 	}
 
 	@Override
@@ -36,19 +36,13 @@ public class CommentTableDAOImpl implements CommentTableDAO {
 	@Override
 	public void updateComment(CommentTableVO comment) throws SQLException {
 		// TODO Auto-generated method stub
-		session.update("CommentTable-Mapper.updateComment",comment);
+		session.update("CommentTable-Mapper.updateComment", comment);
 	}
 
 	@Override
-	public void deleteComment(CommentTableVO comment) throws SQLException {
+	public void deleteComment(String commentid) throws SQLException {
 		// TODO Auto-generated method stub
-		session.delete("CommentTable-Mapper.deleteComment",comment);
-	}
-
-	@Override
-	public List<CommentTableVO> selectCommentByBoard(String boardId) throws SQLException {
-		// TODO Auto-generated method stub
-		return session.selectList("CommentTable-Mapper.selectCommentByBoard", boardId);
+		session.delete("CommentTable-Mapper.deleteComment", commentid);
 	}
 
 }

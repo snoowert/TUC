@@ -5,28 +5,25 @@
   
   
   <mapper namespace="CommentTable-Mapper">
-  	<select id="selectCommentList" resultType="comment">
+  	
+  	<select id="selectCommentById" resultType="comment">
   		select * from commenttable
-  		order by commentdate desc
+  		where commentid=#{commentid}
   	</select>
-  	<select id="selectCommentById" resultType="comment" parameterType="str">
-  		select * from commenttable
-  		where username=#{username}
-  	</select>
-  	<select id="selectCommentByBoard" resultType="comment" parameterType="str">
+  	<select id="selectCommentByBoard" resultType="comment" parameterType="int">
   		select * from commenttable
   		where boardid=#{boardid}
-  		orderby commentdate desc
+  		order by commentdate desc
   	</select>
   	<insert id="insertComment" parameterType="comment">
   		insert into
-  		commenttable(commentid, boardid, commenttext, commentdate, username, isdelete)
-  		values(#{commentid}, #{boardid}, #{commenttext}, #{commentdate}, #{username}, #{isdelete})
+  		commenttable(commentid, boardid, commenttext,  username)
+  		values(comment_seq.nextval, #{boardid}, #{commenttext},  #{username})
   	</insert>
   	<update id="updateComment" parameterType="comment">
   		update commenttable
   		set
-  		commenttext=#{commenttext}, isdelete=#{isdelete}
+  		commenttext=#{commenttext}
   		where commentid=#{commentid} and boardid=#{boardid}
   	</update>
   	<delete id="deleteComment" parameterType="comment">

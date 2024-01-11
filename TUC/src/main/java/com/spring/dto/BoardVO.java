@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class BoardVO {
-	private String boardid;
+	private int boardid;
 	private String category;
 	private String thumnail;
 	private String title;
@@ -21,10 +21,10 @@ public class BoardVO {
 	
 	List<CommentTableVO> commentList;
 	
-	public String getBoardid() {
+	public int getBoardid() {
 		return boardid;
 	}
-	public void setBoardid(String boardid) {
+	public void setBoardid(int boardid) {
 		this.boardid = boardid;
 	}
 	public String getThumnail() {

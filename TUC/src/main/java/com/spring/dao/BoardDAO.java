@@ -3,18 +3,28 @@ package com.spring.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.spring.command.PageMaker;
 import com.spring.dto.BoardVO;
 
 public interface BoardDAO {
-	List<BoardVO> selectBoardList() throws SQLException;
+	List<BoardVO> selectRecipeList(PageMaker pagemaker) throws SQLException;
 
-	List<BoardVO> selectBoardByCategory(String Category) throws SQLException;
+	int selectRecipeListCount(PageMaker pagemaker) throws SQLException;
 	
-	BoardVO selectBoardById(BoardVO board) throws SQLException;
+	int selectRecipeSeqNext() throws SQLException;
+	
+	BoardVO selectRecipeById(int boardid) throws SQLException;
 
-	void insertBoard(BoardVO board) throws SQLException;
+	void insertRecipe(BoardVO board) throws SQLException;
 
-	void updateBoard(BoardVO board) throws SQLException;
+	void updateRecipe(BoardVO board) throws SQLException;
 
-	void deleteBoard(BoardVO board) throws SQLException;
+	void increaseViewCount(int boardid) throws SQLException;
+	
+	void tempDeleteRecipe(int boardid) throws SQLException;
+	
+	void rewindRecipe(int boardid) throws SQLException;
+	
+	void deleteRecipe(int boardid) throws SQLException;
+	
 }

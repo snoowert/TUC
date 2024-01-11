@@ -8,22 +8,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class CommentTableVO {
 	private String commentid;
-	private String boardid;
+	private int boardid;
 	private String commenttext;
-	@DateTimeFormat(pattern="yyyy.MM.dd")
 	private Date commentdate;
 	private String username;
-	private char isdelete;
 	public String getCommentid() {
 		return commentid;
 	}
 	public void setCommentid(String commentid) {
 		this.commentid = commentid;
 	}
-	public String getBoardid() {
+	public int getBoardid() {
 		return boardid;
 	}
-	public void setBoardid(String boardid) {
+	public void setBoardid(int boardid) {
 		this.boardid = boardid;
 	}
 	public String getCommenttext() {
@@ -43,12 +41,6 @@ public class CommentTableVO {
 	}
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	public char getIsdelete() {
-		return isdelete;
-	}
-	public void setIsdelete(char isdelete) {
-		this.isdelete = isdelete;
 	}
 	
 }

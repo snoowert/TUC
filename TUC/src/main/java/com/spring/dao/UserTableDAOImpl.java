@@ -3,8 +3,10 @@ package com.spring.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
+import com.spring.command.PageMaker;
 import com.spring.dto.UserTableVO;
 
 public class UserTableDAOImpl implements UserTableDAO {
@@ -43,5 +45,24 @@ public class UserTableDAOImpl implements UserTableDAO {
 		// TODO Auto-generated method stub
 		session.delete("UserTable-Mapper.deleteUser", user);
 	}
+
+	@Override
+	public List<UserTableVO> selectSearchUserList(PageMaker pageMaker) throws SQLException {
+		int offset = pageMaker.getStartRow();
+		int limit = pageMaker.getPerPageNum();
+		RowBounds rows = new RowBounds(offset,limit);
+		
+		List<UserTableVO> userList
+		= session.selectList("UserTable-Mapper.selectSearchUserList",pageMaker,rows);
+		return userList;
+	}
+
+	@Override
+	public int selectSearchUserListCount(PageMaker pageMaker) throws SQLException {
+		
+		return session.selectOne("UserTable-Mapper.selectSearchUserListCount",pageMaker);
+	}
+
+
 
 }

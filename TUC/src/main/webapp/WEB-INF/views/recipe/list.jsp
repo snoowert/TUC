@@ -50,10 +50,9 @@
 					  	<!-- search bar -->
 					 	<select class="form-control col-md-3" name="searchType" id="searchType">
 					 		<option value=""  >검색구분</option>
-					 		<option value="i" ${pageMaker.searchType eq 'i' ? 'selected':'' } >아이디</option>
-							<option value="n" ${pageMaker.searchType eq 'n' ? 'selected':'' }>이 름</option>
-							<option value="p" ${pageMaker.searchType eq 'p' ? 'selected':'' }>전화번호</option>
-							<option value="e" ${pageMaker.searchType eq 'e' ? 'selected':'' }>이메일</option>				 									
+					 		<option value="t" ${pageMaker.searchType eq 't' ? 'selected':'' } >아이디</option>
+							<option value="u" ${pageMaker.searchType eq 'u' ? 'selected':'' }>이 름</option>
+							<option value="c" ${pageMaker.searchType eq 'c' ? 'selected':'' }>전화번호</option>			 									
 						</select>
 						<!-- keyword -->
    					 	<input  class="form-control" type="text" name="keyword" 
@@ -90,7 +89,6 @@
 		              			<td>${recipe.category }</td>
 		              			<td>${recipe.title }</td>
 		              			<td>${recipe.username }</td>
-		              			<td>${recipe.likecount }</td>
 		              			<td>${recipe.viewcount }</td>
 		              			<td>
 		              				<fmt:formatDate value="${recipe.boarddate }" pattern="yyyy-MM-dd"/>
