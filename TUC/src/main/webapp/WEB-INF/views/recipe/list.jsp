@@ -36,7 +36,7 @@
    	<section class="content">
    		<div class="card">
    			<div class="card-header with-border">
-   				<button type="button" class="btn btn-primary" onclick="OpenWindow('registForm','회원등록',700,800);" >회원등록</button>
+   				<button type="button" class="btn btn-primary" onclick="OpenWindow('registForm','글작성',700,800);" >회원등록</button>
    				<div id="keyword" class="card-tools" style="width:550px;">
    					 <div class="input-group row">
    					 	<!-- search bar -->
