@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.dto.BoardVO;
 import com.spring.service.BoardService;
-import com.spring.service.LikeTableService;
 
 @Controller
 @RequestMapping("/recipe")
