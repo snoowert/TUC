@@ -27,6 +27,7 @@ public class BoardVO {
 	public void setBoardid(int boardid) {
 		this.boardid = boardid;
 	}
+	
 	public String getThumnail() {
 		return thumnail;
 	}
