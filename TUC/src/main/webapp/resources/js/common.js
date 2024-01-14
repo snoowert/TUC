@@ -18,11 +18,11 @@ function CloseWindow(){
 }
 
 //사용자 사진 출력
-function MemberPictureThumb(contextPath){
+function BoardPictureThumb(contextPath){
  for(let target of document.querySelectorAll('.manPicture')){
        let id= target.getAttribute('data-id');
        
-       target.style.backgroundImage="url('"+contextPath+"/member/getPicture.do?id="+id+"')";
+       target.style.backgroundImage="url('"+contextPath+"/board/getPicture.do?id="+id+"')";
        target.style.backgroundRepeat="no-repeat";
        target.style.backgroundSize="cover";
        target.style.backgroundPosition="center";

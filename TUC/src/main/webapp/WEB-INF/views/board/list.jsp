@@ -14,13 +14,13 @@
 	  	<div class="container-fluid">
 	  		<div class="row md-2">
 	  			<div class="col-sm-6">
-	  				<h1>회원목록</h1>  				
+	  				<h1>레시피 공유 게시판</h1>  				
 	  			</div>
 	  			<div class="col-sm-6">
 	  				<ol class="breadcrumb float-sm-right">
 			        <li class="breadcrumb-item">
 			        	<a href="list.do">
-				        	<i class="fa fa-dashboard"></i>회원관리
+				        	<i class="fa fa-dashboard"></i>레시피
 				        </a>
 			        </li>
 			        <li class="breadcrumb-item active">
@@ -72,21 +72,18 @@
 	             <div class="col-sm-12">	
 		    		<table class="table table-bordered">
 		    			<tr>
-		    				<th>사진</th>
-		                	<th>아이디</th>
-		                	<th>패스워드</th>
-		                	<th>이 름</th>
-		                	<th>이메일</th>
-		                	<th>전화번호</th>
-		                	<th>등록날짜</th> <!-- yyyy-MM-dd  -->
+		    				<th></th>
+		                	<th>제목</th>
+		                	<th>작성자</th>
+		                	<th>조회수</th>
+		                	<th>작성일자</th>
 		               	</tr>
 		               	<c:if test="${not empty recipeList }">
 		              	<c:forEach var="recipe" items="${recipeList }">
-		              		<tr onclick="" style="cursor:pointer;">
+		              		<tr onclick="OpenWindow('detail?boardid=${recipe.boardid}','상세보기',700,800);" style="cursor:pointer;">
 		              			<td style="margin:0;padding:0;padding-top:5px;">
 		              				
-		              			</td>	
-		              			<td>${recipe.category }</td>
+		              			</td>
 		              			<td>${recipe.title }</td>
 		              			<td>${recipe.username }</td>
 		              			<td>${recipe.viewcount }</td>

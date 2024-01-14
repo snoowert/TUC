@@ -7,9 +7,9 @@
 
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource"
-		p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@localhost:1521:XE" p:username="TUC"
-		p:password="tuc"></bean>
+		p:driverClassName="${db.driverClassName}"
+		p:url="${db.url}" p:username="${db.username}"
+		p:password="${db.password}"></bean>
 
 	<bean id="dataSourceSpied"
 		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
