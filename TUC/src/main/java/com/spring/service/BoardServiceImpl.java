@@ -3,8 +3,6 @@ package com.spring.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.spring.command.PageMaker;
 import com.spring.dao.BoardDAO;
 import com.spring.dao.CommentTableDAO;
@@ -67,7 +65,6 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		List<CommentTableVO> list = recipe.getCommentList();
 		int boardid = recipe.getBoardid();
-		
 		boardDAO.updateRecipe(recipe);
 		if(list!=null)
 			for(CommentTableVO comment:list) {
@@ -83,6 +80,7 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.tempDeleteRecipe(boardid);
 	}
 
+	
 	@Override
 	public void registComment(CommentTableVO comment, int boardid) throws SQLException {
 		// TODO Auto-generated method stub
@@ -100,6 +98,12 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteComment(String commentid) throws SQLException {
 		// TODO Auto-generated method stub
 		commentDAO.deleteComment(commentid);
+	}
+
+	@Override
+	public CommentTableVO readComment(String commentid) throws SQLException {
+		// TODO Auto-generated method stub
+		return commentDAO.selectCommentById(commentid);
 	}
 
 	

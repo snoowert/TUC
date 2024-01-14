@@ -5,7 +5,7 @@
 
 <form id="jobForm">
 	<input type='hidden' name="page" value="" /> <input type='hidden'
-		name="perPageNum" value="" /> <input type='hidden' name="searchType"
+		name="category" value="" /> <input type='hidden' name="searchType"
 		value="" /> <input type='hidden' name="keyword" value="" />
 </form>
 
@@ -41,23 +41,23 @@
 <script>
 	function search_list(page) {
 		//alert(page);
-		let perPageNum = document.querySelector('select[name="perPageNum"]').value;
+		let category = document.querySelector('select[name="category"]').value;
 		let searchType = document.querySelector('select[name="searchType"]').value;
 		let keyword = document.querySelector('input[name="keyword"]').value;
 
-		//alert(perPageNum+":"+searchType+":"+keyword);
+		//alert(category+":"+searchType+":"+keyword);
 
 		let form = document.querySelector("#jobForm");
 		form.page.value = page;
-		form.perPageNum.value = perPageNum;
+		form.category.value = category;
 		form.searchType.value = searchType;
 		form.keyword.value = keyword;
+		
+		//console.log(page, perPageNum, searchType, keyword);
+		//console.log($(form).serialize());
 
-		console.log(page, perPageNum, searchType, keyword);
-		console.log($(form).serialize());
-
-		//form.action="";
-		//form.method="";
+		form.action="";
+		form.method="get";
 		form.submit();
 	}
 </script>

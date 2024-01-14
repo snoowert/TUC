@@ -24,6 +24,9 @@ public interface BoardService {
 	// 삭제
 	void delete(int boardid) throws SQLException;
 
+	//댓글 읽기
+	CommentTableVO readComment(String commentid) throws SQLException;
+	
 	// 댓글등록
 	void registComment(CommentTableVO comment, int boardid) throws SQLException;
 	

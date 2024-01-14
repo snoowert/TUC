@@ -28,6 +28,6 @@
   	</update>
   	<delete id="deleteComment" parameterType="comment">
   		delete from commenttable
-  		where commentid=#{commentid} and boardid=#{boardid}
+  		where commentid=#{commentid}
   	</delete>
   </mapper>

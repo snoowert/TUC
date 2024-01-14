@@ -9,6 +9,7 @@ public class BoardRegistCommand {
 	private String content;
 	private String writer;
 	private String category;
+	private int boardid;
 	private MultipartFile Picture;
 	
 	public String getTitle() {
@@ -41,12 +42,20 @@ public class BoardRegistCommand {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+	
+	public int getBoardid() {
+		return boardid;
+	}
+	public void setBoardid(int boardid) {
+		this.boardid = boardid;
+	}
 	public BoardVO toBoardVO() {
 		BoardVO board = new BoardVO();
 		board.setTitle(title);
 		board.setContent(content);
 		board.setUsername(writer);
 		board.setCategory(category);
+		board.setBoardid(boardid);
 		return board;
 	}
 	

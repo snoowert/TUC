@@ -65,30 +65,51 @@
 							<div>${board.content }</div>
 						</div>
 						<div class="form-group col-sm-12">
-						
-								<label for="comment">댓 글</label>
+
+							<label for="comment">댓 글</label>
 							<table class="table table-bordered">
 								<c:forEach var="comment" items="${board.commentList }">
 									<tr>
-										<td>${comment.commenttext }</td>
-										<td>${comment.username }</td>
-										<td><fmt:formatDate value="${comment.commentdate }"
+										<td class="col-sm-6">${comment.commenttext }</td>
+										<td class="col-sm-2">${comment.username }</td>
+										<td class="col-sm-2"><fmt:formatDate value="${comment.commentdate }"
 												pattern="yyyy-MM-dd" /></td>
+										<td class="col-sm-1"><button type="button" id="modifyCommentBtn" class="btn btn-warning" style="margin:0 0;"
+							onclick="location.href='modifyCommentForm?commentid=${comment.commentid}';">수정</button></td>
+										<td class="col-sm-1"><button type="button" id="removeCommentBtn" class="btn btn-danger" style="margin:0 0;;"
+							onclick="location.href='deleteComment?commentid=${comment.commentid}&boardid=${comment.boardid }';">삭제</button></td>
 									</tr>
 								</c:forEach>
 							</table>
 						</div>
+						<div class="form-group col-sm-12">
+							<form method="post" action="registComment">
+								<table class="table table-striped"
+									style="text-align: center; border: 1px solid #dddddd">
+									<tr>
+										<td class="col-sm-1" style="margin:0 auto" valign="middle">${board.username }</td>
+										<td><input type="text" style="height: 50px; margin:0 auto;"
+											class="form-control col-sm-8" placeholder="댓글을 입력해주세요."
+											name="commentText"></td>
+										<td class="col-sm-1" style="margin:0 auto;"><input type="submit" class="" value="댓글 작성"></td>
+										
+									</tr>
+								</table>
+								<input type="hidden" value="${board.boardid }" name="boardid">
+								<input type="hidden" value="${board.username }" name="username">
+							</form>
 
+						</div>
 					</div>
 					<div class="card-footer">
 
 						<button type="button" id="modifyBtn" class="btn btn-warning"
-							onclick="location.href='modifyForm?pno=${pds.pno}';">Modify</button>
+							onclick="location.href='modifyForm?boardid=${board.boardid}';">Modify</button>
 						<button type="button" id="removeBtn" class="btn btn-danger"
-							onclick="location.href='remove?pno=${pds.pno}';">REMOVE</button>
+							onclick="location.href='delete?boardid=${board.boardid}';">DELETE</button>
 
 						<button type="button" id="listBtn" class="btn btn-primary"
-							onclick="CloseWindow();">CLOSE</button>
+							onclick="location='list'">CLOSE</button>
 					</div>
 				</div>
 				<!-- end card -->

@@ -9,21 +9,23 @@
 		<if test="searchType == 't'.toString()">
 			and title like '%'||#{keyword}||'%'
 			and category like
-			'%'||#{category}||'% </if>
+			'%'||#{category}||'%' </if>
 		<if test="searchType == 'c'.toString()">
 			and content like '%'||#{keyword}||'%'
 			and category like
-			'%'||#{category}||'% </if>
+			'%'||#{category}||'%' </if>
 		<if test="searchType == 'u'.toString()">
 			and username like '%'||#{keyword}||'%'
 			and category like
-			'%'||#{category}||'% </if>
+			'%'||#{category}||'%' </if>
 	</sql>
 	<!-- 전체 리스트 and 검색 -->
 	<select id="selectRecipeList" resultType="board">
 		select * from board
 		where boardId is not null
+		and isdelete = 'N'
 		<include refid="search"></include>
+		order by boarddate desc
 	</select>
 	<!-- 게시글 총 수 계산 -->
 	<select id="selectRecipeListCount" resultType="int">
@@ -54,8 +56,8 @@
 	<update id="updateRecipe" parameterType="board">
 		update board
 		set
-		thumnail=#{thumnail}, title=#{title}, content=#{content},
-		updatedate=sysdate
+		thumnail = #{thumnail}, title = #{title}, content = #{content},
+		updatedate = sysdate
 		where boardid = #{boardid}
 	</update>
 	<!--조회수 상승 -->
