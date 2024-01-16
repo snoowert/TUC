@@ -7,6 +7,7 @@
 	<input type='hidden' name="page" value="" /> <input type='hidden'
 		name="category" value="" /> <input type='hidden' name="searchType"
 		value="" /> <input type='hidden' name="keyword" value="" />
+		<input type="hidden" name="perPageNum" value=""/>
 </form>
 
 <nav aria-label="Navigation">
@@ -17,7 +18,7 @@
 		</a></li>
 
 		<li class="page-item"><a class="page-link"
-			href="javascript:list_go(${pageMaker.prev ? pageMaker.startPage-1 : pageMaker.page});">
+			href="javascript:search_list(${pageMaker.prev ? pageMaker.startPage-1 : pageMaker.startPage});">
 				<i class="fas fa-angle-left"></i>
 		</a></li>
 		<c:forEach var="pageNum" begin="${pageMaker.startPage }"
@@ -28,11 +29,11 @@
 			</li>
 		</c:forEach>
 		<li class="page-item"><a class="page-link"
-			href="javascript:list_go(${pageMaker.next ? pageMaker.endPage+1 : pageMaker.page});">
+			href="javascript:search_list(${pageMaker.next ? pageMaker.endPage+1 : pageMaker.endPage});">
 				<i class="fas fa-angle-right"></i>
 		</a></li>
 		<li class="page-item"><a class="page-link"
-			href="javascript:list_go(${pageMaker.realEndPage});"> <i class="fas fa-angle-double-right"></i>
+			href="javascript:search_list(${pageMaker.realEndPage});"> <i class="fas fa-angle-double-right"></i>
 		</a></li>
 	</ul>
 </nav>
@@ -52,12 +53,12 @@
 		form.category.value = category;
 		form.searchType.value = searchType;
 		form.keyword.value = keyword;
-		
-		//console.log(page, perPageNum, searchType, keyword);
+		form.perPageNum.value=10;
+		//console.log(page, searchType, keyword, category, totalCount);
 		//console.log($(form).serialize());
 
-		form.action="";
-		form.method="get";
+		//form.action="";
+		//form.method="get";
 		form.submit();
 	}
 </script>

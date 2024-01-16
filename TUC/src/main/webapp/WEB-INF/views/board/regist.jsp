@@ -43,7 +43,7 @@
 							</div>
 							<div class="form-group">
 								<label for="writer">작성자</label> <input type="text" id="writer"
-									readonly name="writer" class="form-control" value="aa">
+									readonly name="writer" class="form-control" value="king">
 							</div>
 							<div class="form-group">
 								<label for="title">제 목</label> <input type="text" id="title"
@@ -75,7 +75,7 @@
 							onclick="regist_go();">등 록</button>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<button type="button" class="btn" id="cancelBtn"
-							onclick="CloseWindow();">취 소</button>
+							onclick="history.go(-1)">취 소</button>
 					</div>
 					<!--end card-footer  -->
 				</div>
@@ -136,10 +136,16 @@
 			return;
 		}
 
-		if ($("input[name='content']").val() == "") { //form.content.value
-			alert("제목은 필수입니다.");
-			$("input[name='content']").focus();
+		if ($("#content").val() == "") { //form.content.value
+			alert("내용은 필수입니다.");
+			$("#content").focus();
 			return;
+		}
+		
+		if(!$('input[name="Picture"]').val()){
+			 alert("썸네일은 필수입니다.");
+			 $('input[name="Picture"]').click();
+			 return;
 		}
 		var form = $('form[role="form"]');
 		form.submit();

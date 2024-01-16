@@ -15,18 +15,18 @@ public class BoardServiceImpl implements BoardService {
 	public void setBoardDAO(BoardDAO boardDAO) {
 		this.boardDAO = boardDAO;
 	}
-	
+
 	private CommentTableDAO commentDAO;
-	
+
 	public void setCommentTableDAO(CommentTableDAO commentDAO) {
 		this.commentDAO = commentDAO;
 	}
-	
+
 	@Override
 	public List<BoardVO> list(PageMaker pagemaker) throws SQLException {
 		List<BoardVO> list = boardDAO.selectRecipeList(pagemaker);
-		if(list.size()>0) {
-			for(BoardVO board : list) {
+		if (list.size() > 0) {
+			for (BoardVO board : list) {
 				int boardid = board.getBoardid();
 				List<CommentTableVO> commentList = commentDAO.selectCommentByBoard(boardid);
 				board.setCommentList(commentList);
@@ -41,11 +41,11 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		List<CommentTableVO> list = recipe.getCommentList();
 		int boardid = boardDAO.selectRecipeSeqNext();
-		
+
 		recipe.setBoardid(boardid);
 		boardDAO.insertRecipe(recipe);
-		if(list!=null)
-			for(CommentTableVO comment : list) {
+		if (list != null)
+			for (CommentTableVO comment : list) {
 				comment.setBoardid(boardid);
 				comment.setUsername(recipe.getUsername());
 				commentDAO.insertComment(comment);
@@ -61,13 +61,19 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public void increaseViewCount(int boardid) throws SQLException {
+		// TODO Auto-generated method stub
+		boardDAO.increaseViewCount(boardid);
+	}
+
+	@Override
 	public void modify(BoardVO recipe) throws SQLException {
 		// TODO Auto-generated method stub
 		List<CommentTableVO> list = recipe.getCommentList();
 		int boardid = recipe.getBoardid();
 		boardDAO.updateRecipe(recipe);
-		if(list!=null)
-			for(CommentTableVO comment:list) {
+		if (list != null)
+			for (CommentTableVO comment : list) {
 				comment.setBoardid(boardid);
 				comment.setUsername(recipe.getUsername());
 				commentDAO.insertComment(comment);
@@ -80,7 +86,6 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.tempDeleteRecipe(boardid);
 	}
 
-	
 	@Override
 	public void registComment(CommentTableVO comment, int boardid) throws SQLException {
 		// TODO Auto-generated method stub
@@ -105,7 +110,5 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return commentDAO.selectCommentById(commentid);
 	}
-
-	
 
 }

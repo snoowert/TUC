@@ -73,7 +73,7 @@
 							<div class="row">
 								<label for="thumnail">썸네일</label> <input type="file"
 									id="inputFile" name="Picture" style="display: none"
-									onchange="picture_go();" /> <input type="hidden"
+									onchange="picture_go();"/> <input type="hidden"
 									name="oldPicture" value="${board.thumnail}" />
 								<div class="input-group col-md-12">
 									<div class="col-md-12" style="text-align: center;">
@@ -112,7 +112,7 @@
 
 <%@ include file="/WEB-INF/views/module/common_js.jsp"%>
 <script>
-	console.log($('input[name="category"]').val())
+	console.log($('input[name="tempThumnail"]').val())
 	BoardPictureThumb('');
 	function picture_go() {
 		let inputFile = document.querySelector("input[name='Picture']").files[0];
@@ -164,12 +164,6 @@
 		if ($("input[name='content']").val() == "") {
 			alert("내용은 필수입니다.");
 			$("input[name='content']").focus();
-			return;
-		}
-		//유효성 체크
-		if ($("input[name='thumnail']").val() == "") {
-			alert("사진은 필수입니다.");
-			$("input[name='thumanail']").click();
 			return;
 		}
 		var form = $('form[role="form"]');

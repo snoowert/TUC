@@ -6,6 +6,9 @@
 <mapper namespace="Board-Mapper">
 	<!-- 검색(제목, 내용, 작성유저) -->
 	<sql id="search">
+		<if test="searchType == ''.toString()">
+			and category like
+			'%'||#{category}||'%' </if>
 		<if test="searchType == 't'.toString()">
 			and title like '%'||#{keyword}||'%'
 			and category like
@@ -33,6 +36,7 @@
 		from board
 		where boardId is not null
 		<include refid="search"></include>
+		and isdelete = 'N'
 	</select>
 	<!-- 보드 아이디를 위한 시퀀스 호출 -->
 	<select id="selectRecipeSeqNext" resultType="int">
@@ -48,8 +52,8 @@
 	<!-- 게시글 등록 -->
 	<insert id="insertRecipe" parameterType="board">
 		insert into
-		board(boardid, thumnail, title, content, tableid, username, category)
-		values(#{boardid}, #{thumnail}, #{title}, #{content}, 'recipe',
+		board(boardid, thumnail, title, content, username, category)
+		values(#{boardid}, #{thumnail}, #{title}, #{content}, 
 		#{username}, #{category})
 	</insert>
 	<!-- 게시글 수정 -->
@@ -57,7 +61,7 @@
 		update board
 		set
 		thumnail = #{thumnail}, title = #{title}, content = #{content},
-		updatedate = sysdate
+		updatedate = sysdate, category=#{category}
 		where boardid = #{boardid}
 	</update>
 	<!--조회수 상승 -->

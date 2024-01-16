@@ -28,18 +28,17 @@
 		</div>
 	</section>
 
-
 	<section class="content">
 		<div class="card">
 			<div class="card-header with-border">
 				<button type="button" class="btn btn-primary"
-					onclick="OpenWindow('registForm','글작성',700,800);">글작성</button>
+					onclick="location='registForm'">글작성</button>
 				<div id="keyword" class="card-tools" style="width: 550px;">
 					<div class="input-group row">
 						<!-- search bar -->
 						<!-- select category -->
 						<select class="form-control col-md-3" name="category"
-							id="category" onchange="">
+							id="category" onchange="search_list(1);">
 							<option value="">카테고리</option>
 							<option value="korean" ${pageMaker.category eq 'korean' ? 'selected':'' }>한식</option>
 							<option value="japanese" ${pageMaker.category eq 'japanese' ? 'selected':'' }>일식</option>
@@ -83,7 +82,7 @@
 							<c:if test="${not empty recipeList }">
 								<c:forEach var="recipe" items="${recipeList }">
 									<tr
-										onclick="location='detail?boardid=${recipe.boardid}'"
+										onclick="location='detail?boardid=${recipe.boardid}&from=list'"
 										style="cursor: pointer;">
 										<td class="col-sm-1">${recipe.category }</td>
 										<td style="margin: 0; padding: 0; padding-top: 5px;"><span

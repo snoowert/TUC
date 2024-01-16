@@ -12,14 +12,14 @@
 		<div class="container-fluid">
 			<div class="row mb-2">
 				<div class="col-sm-6">
-					<h1>자료실</h1>
+					<h1>레시피 공유 게시판</h1>
 				</div>
 
 
 				<div class="col-sm-6">
 					<ol class="breadcrumb float-sm-right">
 						<li class="breadcrumb-item"><a href="list.do"><i
-								class="fa fa-dashboard"></i>자료실</a></li>
+								class="fa fa-dashboard"></i>레시피</a></li>
 						<li class="breadcrumb-item active">상세보기</li>
 					</ol>
 				</div>
@@ -49,9 +49,9 @@
 							</div>
 
 							<div class="form-group col-sm-4">
-								<label for="regDate">작성일</label> <input type="text"
+								<label for="regDate">마지막 작성일</label> <input type="text"
 									class="form-control" id="regDate"
-									value="<fmt:formatDate value="${board.boarddate }" pattern="yyyy-MM-dd" />"
+									value="<fmt:formatDate value="${board.updatedate }" pattern="yyyy-MM-dd" />"
 									readonly />
 							</div>
 							<div class="form-group col-sm-4">
@@ -60,12 +60,17 @@
 									readonly />
 							</div>
 						</div>
-						<div class="form-group col-sm-12">
-							<label for="content">내 용</label>
-							<div>${board.content }</div>
+						<div class="register-card-body" style="margin:0 auto; height:400px; width:500px; display:block">
+			                  <div class="mailbox-attachments clearfix col-md-12" style="text-align: center; height:100%; width:500px">                     
+			                     <div class="manPicture" data-id="${board.boardid}" id="pictureView" style="border: 1px solid green; height: 100%; width: 100%; margin: 0 auto;"></div>                                          
+			                  </div>
+			               	  </div>
 						</div>
-						<div class="form-group col-sm-12">
-
+						<div class="form-group col-sm-12" style="border:0 1rem 1rem;">
+							<label for="content">내 용</label>
+							<div><pre>${board.content }</pre></div>
+						</div>
+						<div class="form-group col-sm-12" style="border:0 1rem 1rem;">
 							<label for="comment">댓 글</label>
 							<table class="table table-bordered">
 								<c:forEach var="comment" items="${board.commentList }">
@@ -75,24 +80,24 @@
 										<td class="col-sm-2"><fmt:formatDate value="${comment.commentdate }"
 												pattern="yyyy-MM-dd" /></td>
 										<td class="col-sm-1"><button type="button" id="modifyCommentBtn" class="btn btn-warning" style="margin:0 0;"
-							onclick="location.href='modifyCommentForm?commentid=${comment.commentid}';">수정</button></td>
+							onclick="OpenWindow('modifyCommentForm?commentid=${comment.commentid}', '댓글수정', 800, 450);">수정</button></td>
 										<td class="col-sm-1"><button type="button" id="removeCommentBtn" class="btn btn-danger" style="margin:0 0;;"
 							onclick="location.href='deleteComment?commentid=${comment.commentid}&boardid=${comment.boardid }';">삭제</button></td>
 									</tr>
+									
 								</c:forEach>
 							</table>
 						</div>
-						<div class="form-group col-sm-12">
-							<form method="post" action="registComment">
+						<div class="form-group col-sm-12" style="border:0 1rem 1rem;">
+							<form method="post" action="registComment" name="CommentForm">
 								<table class="table table-striped"
 									style="text-align: center; border: 1px solid #dddddd">
 									<tr>
-										<td class="col-sm-1" style="margin:0 auto" valign="middle">${board.username }</td>
-										<td><input type="text" style="height: 50px; margin:0 auto;"
-											class="form-control col-sm-8" placeholder="댓글을 입력해주세요."
+										<td class="col-sm-1" style="margin:0 auto" valign="middle"><div style="height:50px; justify-content : center;">${board.username }</div></td>
+										<td class="col-sm-10" style=" margin:0;"><input type="text" style="height: 50px;"
+											class="form-control" placeholder="댓글을 입력해주세요."
 											name="commentText"></td>
-										<td class="col-sm-1" style="margin:0 auto;"><input type="submit" class="" value="댓글 작성"></td>
-										
+										<td class="col-sm-1" style="margin:0 auto;"><input type="button" onclick="registComment_go()" class="" value="댓글 작성" style="height:50px"></td>
 									</tr>
 								</table>
 								<input type="hidden" value="${board.boardid }" name="boardid">
@@ -123,5 +128,16 @@
 
 
 <%@ include file="/WEB-INF/views/module/common_js.jsp"%>
-
+<script>
+BoardPictureThumb('');
+function registComment_go(){
+	if ($("input[name='commentText']").val() == "") {
+		alert("내용은 필수입니다.");
+		$("input[name='commentText']").focus();
+		return;
+	}
+	
+	$('form[name="CommentForm"]').submit();
+}
+</script>
 <%@ include file="/WEB-INF/views/module/footer.jsp"%>

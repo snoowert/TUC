@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.command.BoardModifyCommand;
 import com.spring.command.BoardRegistCommand;
+import com.spring.command.CommentModifyCommand;
 import com.spring.command.CommentRegistCommand;
 import com.spring.command.PageMaker;
 import com.spring.dto.BoardVO;
@@ -39,10 +40,9 @@ public class RecipeController {
 	private BoardService boardservice;
 	// 목록보기
 	@GetMapping("/list")
-	public ModelAndView list(@ModelAttribute PageMaker pagemaker, ModelAndView mnv) throws Exception {
-		List<BoardVO> boardList = boardservice.list(pagemaker);
+	public ModelAndView list(@ModelAttribute PageMaker pageMaker, ModelAndView mnv) throws Exception {
+		List<BoardVO> boardList = boardservice.list(pageMaker);
 		String url = "/board/list";
-
 		mnv.addObject("recipeList", boardList);
 		mnv.setViewName(url);
 		return mnv;
@@ -50,11 +50,16 @@ public class RecipeController {
 
 	// 상세보기
 	@GetMapping("/detail")
-	public ModelAndView detail(int boardid, ModelAndView mnv) throws Exception {
+	public ModelAndView detail(int boardid, String from, ModelAndView mnv) throws Exception {
 		String url = "/board/detail";
 
 		BoardVO board = boardservice.read(boardid);
-
+		if (from != null && from.equals("list")) {
+			boardservice.increaseViewCount(boardid);;
+			url = "redirect:/detail?boardid="+boardid;
+		} else {
+			board = boardservice.read(boardid);
+		}
 		mnv.addObject("board", board);
 		mnv.setViewName(url);
 		return mnv;
@@ -183,10 +188,10 @@ public class RecipeController {
 		String oldPicture = modifyCommand.getOldPicture();
 		MultipartFile multi = modifyCommand.getPicture();
 		// 파일 저장 및 삭제
-		String fileName = saveThumnail(oldPicture, multi);
-		if (fileName == null || fileName.isEmpty()) {
+		if (multi == null || multi.isEmpty()) {
 			board.setThumnail(oldPicture);
 		} else {
+			String fileName = saveThumnail(oldPicture, multi);
 			board.setThumnail(fileName);
 		}
 		// DB 수정
@@ -206,12 +211,12 @@ public class RecipeController {
 	public ModelAndView delete(int boardid, ModelAndView mnv) throws Exception {
 		String url = "/board/delete_success";
 
-		BoardVO board = boardservice.read(boardid);
-		String savePath = this.thumnailPath;
-		File imageFile = new File(savePath, board.getThumnail());
-		if (imageFile.exists()) {
-			imageFile.delete();
-		}
+//		BoardVO board = boardservice.read(boardid);
+//		String savePath = this.thumnailPath;
+//		File imageFile = new File(savePath, board.getThumnail());
+//		if (imageFile.exists()) {
+//			imageFile.delete();
+//		}
 		boardservice.delete(boardid);
 
 		mnv.setViewName(url);
@@ -232,7 +237,7 @@ public class RecipeController {
 	}
 	//댓글 수정
 	@GetMapping("/modifyCommentForm")
-	public ModelAndView modifyCommentForm(String commentid, int boardid, ModelAndView mnv) throws Exception{
+	public ModelAndView modifyCommentForm(String commentid, ModelAndView mnv) throws Exception{
 		String url = "board/modifyComment";
 		CommentTableVO comment = boardservice.readComment(commentid);
 		
@@ -240,6 +245,19 @@ public class RecipeController {
 		mnv.setViewName(url);
 		return mnv;
 	}
+	//댓글 수정 처리
+	@PostMapping(value = "/modifyComment", produces = "text/plain;charset=utf-8")
+	public ModelAndView modifyComment(CommentModifyCommand command, ModelAndView mnv) throws Exception{
+		String url = "/board/modifyComment_success";
+		
+		CommentTableVO comment = command.toCommentVO();
+		boardservice.modifyComment(comment);
+		
+		mnv.setViewName(url);
+		return mnv;
+	}
+	
+	
 	//댓글 삭제
 	@GetMapping("/deleteComment")
 	public ModelAndView deleteComment(String commentid, int boardid, ModelAndView mnv) throws Exception{

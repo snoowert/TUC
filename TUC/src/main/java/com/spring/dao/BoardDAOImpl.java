@@ -19,17 +19,17 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> selectRecipeList(PageMaker pagemaker) throws SQLException {
 		// TODO Auto-generated method stub
-		int offset = (pagemaker.getPage()-1)*pagemaker.getPerPageNum();
+		int offset = pagemaker.getStartRow();
 		int limmit = pagemaker.getPerPageNum();
 		
 		RowBounds rows = new RowBounds(offset,limmit);
-		return session.selectList("Board-Mapper.selectRecipeList", pagemaker);
+		return session.selectList("Board-Mapper.selectRecipeList", pagemaker, rows);
 	}
 
 	@Override
 	public int selectRecipeListCount(PageMaker pagemaker) throws SQLException {
 		// TODO Auto-generated method stub
-		return session.selectOne("Board-Mapper.selectRecipeListCount");
+		return session.selectOne("Board-Mapper.selectRecipeListCount", pagemaker);
 	}
 
 	@Override

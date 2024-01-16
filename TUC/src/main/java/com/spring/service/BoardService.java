@@ -18,18 +18,20 @@ public interface BoardService {
 	// 읽기
 	BoardVO read(int boardid) throws SQLException;
 
+	void increaseViewCount(int boardid) throws SQLException;
+
 	// 수정
 	void modify(BoardVO recipe) throws SQLException;
 
 	// 삭제
 	void delete(int boardid) throws SQLException;
 
-	//댓글 읽기
+	// 댓글 읽기
 	CommentTableVO readComment(String commentid) throws SQLException;
-	
+
 	// 댓글등록
 	void registComment(CommentTableVO comment, int boardid) throws SQLException;
-	
+
 	// 댓글수정
 	void modifyComment(CommentTableVO comment) throws SQLException;
 
